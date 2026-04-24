@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Unfog Dashboard</title>
+<link rel="icon" href="smallLogo.png"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
+<script src="render.js"></script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+import { getFirestore, doc, getDoc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+
+const cfg = {
+  apiKey:"AIzaSyDt2bFuzkzoQrH7eb-mAtZtTAN-LKehG1M",
+  authDomain:"unfog-db3da.firebaseapp.com",
+  projectId:"unfog-db3da",
+  storageBucket:"unfog-db3da.firebasestorage.app",
+  messagingSenderId:"165084632018",
+  appId:"1:165084632018:web:e05dd654236df3adedee0b"
+};
+const app = initializeApp(cfg);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+let cloudData=null, activeWs="student", authMode="login";
+const docId=e=>e.trim().toLowerCase().replace(/[^a-z0-9]+/g,"_");
+const $=id=>document.getElementById(id);
+
+onAuthStateChanged(auth, async user=>{
+  if(user){
+    $('auth-overlay').style.display='none';
+    $('dash-content').style.display='flex';
+    $('user-display').textContent=user.email.slice(0,2).toUpperCase();
+    await loadData(user.email);
+  } else {
+    $('auth-overlay').style.display='flex';
+    $('dash-content').style.display='none';
+  }
+});
+
+async function loadData(email){
+  try{
+    const snap=await getDoc(doc(db,"unfogUsers",docId(email)));
+    if(snap.exists()){
+      cloudData=snap.data();
+      const p=cloudData.profile||{};
+      $('dash-username').textContent=p.name||"User";
+      $('dash-email').textContent=p.email||"";
+      render();
+    } else {
+      $('main-content').innerHTML='<div style="text-align:center;padding:60px;color:#94A3B8">No data found. Use the app first!</div>';
+    }
+  }catch(e){
+    $('main-content').innerHTML=`<div style="color:#EF4444;padding:20px">${e.message}</div>`;
+  }
+}
+
+function render(){
+  if(!cloudData) return;
+  const q=$('dash-search')?.value||'';
+  $('main-content').innerHTML=window.renderDashboard(cloudData,activeWs,q);
+}
+
+$('auth-form').addEventListener('submit',async e=>{
+  e.preventDefault();
+  $('auth-error').textContent='';
+  $('auth-btn').innerHTML='<span class="auth-spinner"></span>';
+  $('auth-btn').disabled=true;
+  try{
+    if(authMode==='login'){
+      await signInWithEmailAndPassword(auth,$('auth-email').value.trim(),$('auth-password').value);
+    } else {
+      await createUserWithEmailAndPassword(auth,$('auth-email').value.trim(),$('auth-password').value);
+      await setDoc(doc(db,"unfogUsers",docId($('auth-email').value.trim())),{
+        profile:{name:$('auth-name').value||"User",email:$('auth-email').value.trim(),role:"multi"},
+        mainTab:"home",activeWorkspace:"student",analyticsWorkspace:"all",
+        items:[],tasks:[],playlists:[],destinations:[],activeDestinationId:null,
+        deadlines:[],subjects:[],studentFiles:[],generalChecklist:[],
+        gymRoutine:{},exerciseFolders:[],exercises:[],matchDays:[],importantWebsites:[],
+        updatedAt:serverTimestamp()
+      });
+    }
+  }catch(err){
+    let msg=err.message||'Error';
+    if(msg.includes('unauthorized-domain')) msg='Open via http://localhost (not file://) for auth to work.';
+    else if(msg.includes('invalid-credential')||msg.includes('wrong-password')) msg='Wrong email or password.';
+    else if(msg.includes('too-many-requests')) msg='Too many attempts. Wait and try again.';
+    else if(msg.includes('email-already-in-use')) msg='Email already registered. Log in instead.';
+    else msg=msg.replace('Firebase: ','').replace(/\(auth\/.*?\)/,'').trim();
+    $('auth-error').textContent=msg;
+    $('auth-btn').textContent=authMode==='login'?'Sign In':'Create Account';
+    $('auth-btn').disabled=false;
+  }
+});
+
+$('auth-toggle').onclick=()=>{
+  authMode=authMode==='login'?'register':'login';
+  $('auth-error').textContent='';
+  if(authMode==='register'){
+    $('auth-title').textContent='Create Account';
+    $('auth-subtitle').textContent='Join Unfog.';
+    $('name-field').style.display='block';
+    $('auth-btn').textContent='Create Account';
+    $('auth-toggle').innerHTML='Already have an account? <a>Sign In</a>';
+  } else {
+    $('auth-title').textContent='Welcome back';
+    $('auth-subtitle').textContent='Sign in to your Unfog dashboard.';
+    $('name-field').style.display='none';
+    $('auth-btn').textContent='Sign In';
+    $('auth-toggle').innerHTML="Don't have an account? <a>Create one</a>";
+  }
+};
+
+$('logout-btn').onclick=()=>signOut(auth);
+
+document.querySelectorAll('.dash-ws-btn').forEach(btn=>{
+  btn.onclick=()=>{
+    document.querySelectorAll('.dash-ws-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    activeWs=btn.dataset.ws;
+    render();
+  };
+});
+
+$('dash-search').addEventListener('input',()=>render());
+</script>
+</head>
+<body>
+
+<!-- Auth -->
+<div class="auth-overlay" id="auth-overlay">
+  <div class="auth-modal">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:24px">
+      <img src="smallLogo.png" style="width:32px;height:32px;border-radius:8px"/>
+      <span style="font-size:18px;font-weight:900">Unfog</span>
+    </div>
+    <h2 id="auth-title">Welcome back</h2>
+    <p id="auth-subtitle">Sign in to your Unfog dashboard.</p>
+    <form id="auth-form">
+      <div id="name-field" style="display:none"><input id="auth-name" class="auth-input" type="text" placeholder="Your name"/></div>
+      <input id="auth-email" class="auth-input" type="email" placeholder="Email address" required/>
+      <input id="auth-password" class="auth-input" type="password" placeholder="Password" required/>
+      <p class="auth-error" id="auth-error"></p>
+      <button type="submit" id="auth-btn" class="btn btn-primary" style="width:100%;justify-content:center;border-radius:12px;padding:16px">Sign In</button>
+    </form>
+    <p class="auth-toggle" id="auth-toggle">Don't have an account? <a>Create one</a></p>
+    <a href="index.html" style="display:block;text-align:center;margin-top:16px;font-size:13px;color:#475569">← Back to Website</a>
+  </div>
+</div>
+
+<!-- Dashboard -->
+<div id="dash-content" style="display:none;flex-direction:column;min-height:100vh">
+  <nav class="dash-nav">
+    <a href="index.html" style="display:flex;align-items:center;gap:8px;font-weight:900;font-size:16px">
+      <img src="smallLogo.png" style="width:28px;height:28px;border-radius:6px"/> Unfog
+    </a>
+    <div style="flex:1"></div>
+    <div style="display:flex;align-items:center;gap:12px">
+      <div style="text-align:right">
+        <div id="dash-username" style="font-size:14px;font-weight:700"></div>
+        <div id="dash-email" style="font-size:11px;color:#94A3B8"></div>
+      </div>
+      <div id="user-display" style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#4F7CF7,#4FD1C5);display:flex;align-items:center;justify-content:center;color:white;font-weight:900;font-size:14px">U</div>
+      <button id="logout-btn" class="btn btn-ghost" style="font-size:13px">Sign Out</button>
+    </div>
+  </nav>
+
+  <div class="dash-body">
+    <aside class="dash-sidebar">
+      <div style="font-size:11px;font-weight:700;color:#94A3B8;letter-spacing:1px;text-transform:uppercase;padding:10px 14px 6px">Workspaces</div>
+      <button class="dash-ws-btn active" data-ws="student">🎓 Student</button>
+      <button class="dash-ws-btn" data-ws="traveler">🌐 Traveler</button>
+      <button class="dash-ws-btn" data-ws="sports">🏃 Sports</button>
+      <button class="dash-ws-btn" data-ws="designer">🎨 Designer</button>
+      <button class="dash-ws-btn" data-ws="coder">💻 Coder</button>
+      <button class="dash-ws-btn" data-ws="general">🗂️ General</button>
+      <div style="height:1px;background:rgba(255,255,255,.08);margin:12px 0"></div>
+      <a href="index.html" style="display:flex;align-items:center;gap:10px;padding:10px 14px;font-size:13px;color:#94A3B8">← Back to Site</a>
+    </aside>
+
+    <main class="dash-main">
+      <div style="margin-bottom:16px">
+        <input id="dash-search" type="text" placeholder="🔍  Search all your saves..." style="width:100%;padding:12px 18px;background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.1);border-radius:12px;color:#F1F5F9;font-size:14px;font-family:inherit;outline:none" onfocus="this.style.borderColor='rgba(79,124,247,.6)'" onblur="this.style.borderColor='rgba(255,255,255,.1)'"/>
+      </div>
+      <div id="main-content">
+        <div style="text-align:center;padding:60px;color:#94A3B8">⏳ Loading your data...</div>
+      </div>
+    </main>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Unfog — No Confusion</title>
+<meta name="description" content="Save from anywhere. Open it later without digging. Six intelligent workspaces."/>
+<link rel="icon" href="smallLogo.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo"><img src="smallLogo.png" alt="Unfog"/><span>Unfog</span></a>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="workspaces.html">Workspaces</a>
+      <a href="#download">Download</a>
+      <a href="#team">Team</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <a href="dashboard.html" class="btn btn-ghost">Log In</a>
+      <a href="#download" class="btn btn-primary">Get the App</a>
+    </div>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+  <div class="nav-mobile" id="nav-mobile">
+    <a href="#features">Features</a>
+    <a href="workspaces.html">Workspaces</a>
+    <a href="#download">Download</a>
+    <a href="#team">Team</a>
+    <a href="dashboard.html" class="btn btn-primary" style="margin-top:8px;justify-content:center;">Dashboard</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-mesh"></div>
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="container hero-grid">
+    <div class="hero-left">
+      <div class="hero-chip">✦ Save. Organize. Unfog.</div>
+      <h1 class="hero-h1">Save from<br/><span class="grad">anywhere.</span><br/>Open it later<br/>without digging.</h1>
+      <p class="hero-sub">Your personal second brain — one app across 6 intelligent workspaces. Student, Traveler, Sports, Designer, Coder, General.</p>
+      <div class="hero-btns">
+        <a href="dashboard.html" class="btn btn-primary btn-xl">🚀 Open Dashboard</a>
+        <a href="#download" class="btn btn-glow btn-xl">📲 Download App</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hstat"><div class="hstat-n">6</div><div class="hstat-l">Workspaces</div></div>
+        <div class="hstat-div"></div>
+        <div class="hstat"><div class="hstat-n">AI</div><div class="hstat-l">Powered</div></div>
+        <div class="hstat-div"></div>
+        <div class="hstat"><div class="hstat-n">∞</div><div class="hstat-l">Items</div></div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="phone-wrap">
+        <div class="phone-glow"></div>
+        <div class="phone-3d">
+          <img src="websiteImage.png" alt="Unfog App" class="hero-img"/>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint"><div class="scroll-dot"></div></div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-track">
+  <div class="marquee-inner">
+    <span>🎓 Student</span><span>🌐 Traveler</span><span>🏃 Sports</span><span>🎨 Designer</span><span>💻 Coder</span><span>🗂️ General</span>
+    <span>📚 Save PDFs</span><span>🔗 Save Links</span><span>🖼️ Images</span><span>✅ Checklists</span><span>📅 Deadlines</span><span>🤖 AI Summaries</span>
+    <span>🎓 Student</span><span>🌐 Traveler</span><span>🏃 Sports</span><span>🎨 Designer</span><span>💻 Coder</span><span>🗂️ General</span>
+    <span>📚 Save PDFs</span><span>🔗 Save Links</span><span>🖼️ Images</span><span>✅ Checklists</span><span>📅 Deadlines</span><span>🤖 AI Summaries</span>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="section" id="features">
+  <div class="container">
+    <div class="sec-badge">Features</div>
+    <h2 class="sec-h2">Everything you save,<br/><span class="grad">finally organized.</span></h2>
+    <p class="sec-p">Stop losing saved content across apps. Unfog puts everything in one searchable, intelligent place.</p>
+    <div class="feat-grid">
+      <div class="feat-card feat-big reveal">
+        <div class="feat-icon-wrap" style="background:linear-gradient(135deg,#4F7CF7,#4FD1C5)">🧠</div>
+        <h3>AI-Powered Summaries</h3>
+        <p>Save any link and Unfog auto-generates a smart summary, keywords and tags using Gemini AI.</p>
+        <div class="feat-chip">Powered by Gemini</div>
+      </div>
+      <div class="feat-card reveal"><div class="feat-icon-wrap" style="background:#1e3a5f">🔍</div><h3>Universal Search</h3><p>Search across all workspaces by title, tag, description, or source instantly.</p></div>
+      <div class="feat-card reveal"><div class="feat-icon-wrap" style="background:#1a3a2a">☁️</div><h3>Cloud Sync</h3><p>Data syncs via Firestore. Pull to refresh. Works on any device.</p></div>
+      <div class="feat-card reveal"><div class="feat-icon-wrap" style="background:#2d1a4a">📊</div><h3>Analytics Dashboard</h3><p>Unfog Score, workspace distribution, weekly trends — all at a glance.</p></div>
+      <div class="feat-card reveal"><div class="feat-icon-wrap" style="background:#3a1a1a">📄</div><h3>PDF & File Support</h3><p>Upload and view PDFs and images right inside the app.</p></div>
+      <div class="feat-card feat-big reveal">
+        <div class="feat-icon-wrap" style="background:linear-gradient(135deg,#F59E0B,#EF4444)">🎥</div>
+        <h3>YouTube Playlist Tracker</h3>
+        <p>Import any YouTube playlist, track your watch progress video by video. Perfect for coders learning from tutorials.</p>
+        <div class="feat-chip" style="background:#2d1a0a;border-color:#F59E0B44;color:#F59E0B">For Coders</div>
+      </div>
+      <div class="feat-card reveal"><div class="feat-icon-wrap" style="background:#1a2a1a">🗺️</div><h3>Travel Planning</h3><p>Organize stays, food spots, places to visit — by destination city.</p></div>
+      <div class="feat-card reveal"><div class="feat-icon-wrap" style="background:#2a1a0a">🏋️</div><h3>Workout Tracker</h3><p>Gym routines, exercise folders, nutrition plans and match day calendars.</p></div>
+      <div class="feat-card reveal"><div class="feat-icon-wrap" style="background:#1a1a2a">🔗</div><h3>Important Websites</h3><p>Pin your most-used websites and open them with one tap.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- WORKSPACES TEASER -->
+<section class="section ws-teaser">
+  <div class="container">
+    <div class="sec-badge">Workspaces</div>
+    <h2 class="sec-h2">One app.<br/><span class="grad">Six lives.</span></h2>
+    <p class="sec-p">Switch between specialized workspaces built for how you actually use your phone.</p>
+    <div class="ws-cards">
+      <a href="workspaces.html#student" class="ws-pill reveal" style="--c:#F59E0B">🎓 Student</a>
+      <a href="workspaces.html#traveler" class="ws-pill reveal" style="--c:#10B981">🌐 Traveler</a>
+      <a href="workspaces.html#sports" class="ws-pill reveal" style="--c:#D97706">🏃 Sports</a>
+      <a href="workspaces.html#designer" class="ws-pill reveal" style="--c:#7C3AED">🎨 Designer</a>
+      <a href="workspaces.html#coder" class="ws-pill reveal" style="--c:#059669">💻 Coder</a>
+      <a href="workspaces.html#general" class="ws-pill reveal" style="--c:#4F7CF7">🗂️ General</a>
+    </div>
+    <a href="workspaces.html" class="btn btn-primary" style="margin-top:40px;display:inline-flex">Explore All Workspaces →</a>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section" id="how">
+  <div class="container">
+    <div class="sec-badge">How It Works</div>
+    <h2 class="sec-h2">Three steps to<br/><span class="grad">total clarity.</span></h2>
+    <div class="steps">
+      <div class="step reveal"><div class="step-n">01</div><h3>Save Anything</h3><p>Tap + Add. Paste a link, upload a file, or type a note. Unfog fetches thumbnail and metadata automatically.</p></div>
+      <div class="step-arr">→</div>
+      <div class="step reveal"><div class="step-n">02</div><h3>AI Organizes It</h3><p>Gemini AI reads your content, generates a summary, suggests keywords and tags it to the right workspace.</p></div>
+      <div class="step-arr">→</div>
+      <div class="step reveal"><div class="step-n">03</div><h3>Find It Instantly</h3><p>Search all workspaces. Filter by tags. Mark items complete. Your Unfog Score rises as you act on what you save.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- DOWNLOAD -->
+<section class="section" id="download">
+  <div class="container">
+    <div class="sec-badge">Download</div>
+    <h2 class="sec-h2">All releases.<br/><span class="grad">Always free.</span></h2>
+    <p class="sec-p">Direct APK download for Android. No Play Store needed.</p>
+    <div class="releases">
+      <div class="rel-card rel-latest reveal">
+        <div class="rel-badge">✦ Latest</div>
+        <div class="rel-ver">v1.0.1</div>
+        <div class="rel-date">April 2026</div>
+        <ul class="rel-notes">
+          <li>✅ Pull-to-refresh sync</li>
+          <li>✅ Update notifications</li>
+          <li>✅ Sports workspace enhancements</li>
+          <li>✅ Full input validation</li>
+          <li>✅ Website & More Info sidebar</li>
+        </ul>
+        <a href="https://www.google.com" class="btn btn-primary">📲 Download v1.0.1</a>
+      </div>
+      <div class="rel-card reveal">
+        <div class="rel-ver">v1.0.0</div>
+        <div class="rel-date">March 2026</div>
+        <ul class="rel-notes">
+          <li>✅ 6 workspaces</li>
+          <li>✅ Firebase sync</li>
+          <li>✅ AI keyword generation</li>
+          <li>✅ YouTube playlist import</li>
+        </ul>
+        <a href="https://drive.google.com/uc?export=download&id=1MgjEqoV8nC6HISCU5exVQofgR3jlK0Zk" class="btn btn-outline">Download v1.0.0</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="section" id="team">
+  <div class="container">
+    <div class="sec-badge">Team</div>
+    <h2 class="sec-h2">The minds behind<br/><span class="grad">Unfog.</span></h2>
+    <div class="team-grid">
+      <div class="team-card reveal">
+        <div class="team-photo"><img src="mohit.png" alt="Mohit Rathore" onerror="this.parentElement.innerHTML='<div class=team-initials>MR</div>'"/></div>
+        <h3>Mohit Rathore</h3>
+        <p class="team-role">Co-founder &amp; Developer</p>
+        <p class="team-q">"I love building this app. The first ingredient in Unfog was my own requirements — a collection of feelings turned into a tool."</p>
+        <div class="team-soc">
+          <a href="https://www.instagram.com/mohit_rathore05" target="_blank" class="soc-btn soc-ig">📸 Instagram</a>
+          <a href="https://www.linkedin.com/in/mohit-rathore05/" target="_blank" class="soc-btn soc-li">💼 LinkedIn</a>
+        </div>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-photo"><img src="shantanu.jpg" alt="Shantanu Wankhede" onerror="this.parentElement.innerHTML='<div class=team-initials>SW</div>'"/></div>
+        <h3>Shantanu Wankhede</h3>
+        <p class="team-role">Co-founder &amp; Developer</p>
+        <p class="team-q">"I built Unfog to address the chaos of managing tasks, ideas, and saved content across multiple platforms every single day."</p>
+        <div class="team-soc">
+          <a href="https://www.instagram.com/shan.wankhede" target="_blank" class="soc-btn soc-ig">📸 Instagram</a>
+          <a href="https://www.linkedin.com/in/shantanu-wankhede-5b1b00312/" target="_blank" class="soc-btn soc-li">💼 LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="container">
+    <div class="sec-badge">Contact</div>
+    <h2 class="sec-h2">We'd love to<br/><span class="grad">hear from you.</span></h2>
+    <div class="contact-grid">
+      <div class="con-card reveal">
+        <div class="con-icon">✉️</div>
+        <h3>Send Feedback</h3>
+        <p>Drop us an email and we'll respond personally.</p>
+        <a href="mailto:its.mohit.rathore.05@gmail.com?subject=Unfog Feedback" class="btn btn-primary">Send Email</a>
+      </div>
+      <div class="con-card reveal">
+        <div class="con-icon">📘</div>
+        <h3>Presentation Deck</h3>
+        <p>Read the full presentation about Unfog and how it works.</p>
+        <a href="https://drive.google.com/file/d/1uRyDvYlx_0h5dPf8ZFmyrbUvO-VKm1pV/view?usp=sharing" target="_blank" class="btn btn-outline">View PDF</a>
+      </div>
+      <div class="con-card reveal">
+        <div class="con-icon">📱</div>
+        <h3>Follow Us</h3>
+        <div class="soc-list">
+          <a href="https://www.snapchat.com/add/mohitr05" target="_blank">👻 Snapchat</a>
+          <a href="https://www.instagram.com/mohit_rathore05" target="_blank">📸 Instagram</a>
+          <a href="https://www.facebook.com/mohitr05" target="_blank">📘 Facebook</a>
+          <a href="https://www.linkedin.com/in/mohit-rathore05/" target="_blank">💼 LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <img src="smallLogo.png" alt="Unfog"/>
+        <span>Unfog</span>
+        <p>No Confusion.</p>
+      </div>
+      <div class="foot-links">
+        <a href="#features">Features</a>
+        <a href="workspaces.html">Workspaces</a>
+        <a href="#download">Download</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="#team">Team</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>© 2026 Unfog. Built with ❤️ by Mohit &amp; Shantanu.</p>
+      <span class="ver-badge">v1.0.1</span>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

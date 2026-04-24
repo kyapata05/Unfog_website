@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Unfog Workspaces</title>
+<link rel="icon" href="smallLogo.png"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
+<style>
+.ws-hero{min-height:60vh;display:flex;align-items:center;padding:calc(var(--nav) + 80px) 0 60px;background:var(--bg);position:relative;overflow:hidden}
+.ws-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(79,124,247,.14),transparent 70%)}
+.ws-hero-inner{text-align:center;position:relative;z-index:1}
+.ws-section{padding:80px 0;border-top:1px solid var(--border)}
+.ws-section:nth-child(even){background:var(--bg2)}
+.ws-layout{display:flex;align-items:center;gap:60px}
+.ws-layout.flip{flex-direction:row-reverse}
+.ws-info{flex:1}
+.ws-info .ws-icon{font-size:56px;margin-bottom:20px}
+.ws-info h2{font-size:clamp(28px,4vw,48px);font-weight:900;margin-bottom:16px;font-family:'Plus Jakarta Sans',sans-serif}
+.ws-info p{font-size:16px;color:var(--text2);line-height:1.8;margin-bottom:24px}
+.ws-feats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px}
+.ws-feat{background:var(--surface);border:1px solid var(--border);border-radius:var(--rs);padding:14px 16px;font-size:13px;font-weight:600;color:var(--text2);display:flex;align-items:center;gap:8px}
+.ws-feat::before{content:'✓';color:var(--ws-c,var(--p));font-weight:900}
+.ws-phone{flex:1;display:flex;justify-content:center;position:relative}
+.phone-frame{width:240px;background:#0a0f1a;border-radius:40px;padding:12px;border:2px solid rgba(255,255,255,.12);box-shadow:0 40px 100px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.05);transform:perspective(1000px) rotateY(-6deg);transition:transform .5s;animation:wsFloat 5s ease-in-out infinite}
+.phone-frame:hover{transform:perspective(1000px) rotateY(0deg)}
+@keyframes wsFloat{0%,100%{transform:perspective(1000px) rotateY(-6deg) translateY(0)}50%{transform:perspective(1000px) rotateY(-6deg) translateY(-12px)}}
+.phone-screen{background:var(--bg);border-radius:30px;overflow:hidden;min-height:420px;padding:16px}
+.phone-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.phone-logo{display:flex;align-items:center;gap:6px;font-weight:900;font-size:12px}
+.phone-logo img{width:18px;height:18px;border-radius:4px}
+.phone-ws-tag{font-size:10px;font-weight:700;padding:3px 10px;border-radius:100px;background:rgba(255,255,255,.08)}
+.mock-card{background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:12px;padding:12px;margin-bottom:8px}
+.mock-title{font-size:11px;font-weight:700;margin-bottom:4px}
+.mock-sub{font-size:10px;color:var(--text3)}
+.mock-row{display:flex;gap:6px;margin-bottom:8px}
+.mock-chip{font-size:9px;padding:3px 8px;border-radius:100px;border:1px solid var(--border);color:var(--text3)}
+.mock-chip.active{background:rgba(79,124,247,.2);border-color:rgba(79,124,247,.4);color:var(--p)}
+.ws-glow{position:absolute;width:300px;height:300px;border-radius:50%;filter:blur(80px);opacity:.3;pointer-events:none;z-index:0}
+@media(max-width:900px){.ws-layout,.ws-layout.flip{flex-direction:column}.ws-feats{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><img src="smallLogo.png" alt="Unfog"/><span>Unfog</span></a>
+    <div class="nav-links">
+      <a href="index.html#features">Features</a>
+      <a href="workspaces.html" style="color:var(--p)">Workspaces</a>
+      <a href="index.html#download">Download</a>
+      <a href="index.html#team">Team</a>
+    </div>
+    <div class="nav-actions">
+      <a href="dashboard.html" class="btn btn-ghost">Log In</a>
+      <a href="index.html#download" class="btn btn-primary">Get the App</a>
+    </div>
+  </div>
+</nav>
+
+<section class="ws-hero">
+  <div class="container ws-hero-inner">
+    <div class="sec-badge">Workspaces</div>
+    <h1 class="sec-h2" style="max-width:700px;margin:0 auto 16px">One app.<br/><span class="grad">Six powerful lives.</span></h1>
+    <p class="sec-p" style="margin:0 auto;text-align:center">Each workspace is purpose-built for a different part of your life. Switch instantly. Stay organized always.</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:32px">
+      <a href="#student" class="ws-pill" style="--c:#F59E0B">🎓 Student</a>
+      <a href="#traveler" class="ws-pill" style="--c:#10B981">🌐 Traveler</a>
+      <a href="#sports" class="ws-pill" style="--c:#D97706">🏃 Sports</a>
+      <a href="#designer" class="ws-pill" style="--c:#7C3AED">🎨 Designer</a>
+      <a href="#coder" class="ws-pill" style="--c:#059669">💻 Coder</a>
+      <a href="#general" class="ws-pill" style="--c:#4F7CF7">🗂️ General</a>
+    </div>
+  </div>
+</section>
+
+<!-- STUDENT -->
+<section class="ws-section" id="student">
+  <div class="container ws-layout reveal">
+    <div class="ws-info" style="--ws-c:#F59E0B">
+      <div class="ws-icon">🎓</div>
+      <div class="sec-badge" style="background:linear-gradient(135deg,#F59E0B,#EF4444)">Student</div>
+      <h2>Built for the <span style="color:#F59E0B">modern student.</span></h2>
+      <p>Stop losing lecture PDFs across WhatsApp and Google Drive. Unfog's Student workspace is your personal academic control center — organized by subject, deadline, and file type.</p>
+      <div class="ws-feats">
+        <div class="ws-feat">Subject folder system</div>
+        <div class="ws-feat">Upload PDFs & notes</div>
+        <div class="ws-feat">Deadline calendar</div>
+        <div class="ws-feat">Study checklist</div>
+        <div class="ws-feat">AI keyword tagging</div>
+        <div class="ws-feat">Assignment links</div>
+      </div>
+    </div>
+    <div class="ws-phone">
+      <div class="ws-glow" style="background:#F59E0B;top:0;left:20px"></div>
+      <div class="phone-frame" style="position:relative;z-index:1">
+        <div class="phone-screen">
+          <div class="phone-bar"><div class="phone-logo"><img src="smallLogo.png"/>Unfog</div><div class="phone-ws-tag" style="color:#F59E0B;border-color:#F59E0B44">🎓 Student</div></div>
+          <div class="mock-row"><div class="mock-chip active">All</div><div class="mock-chip">Physics</div><div class="mock-chip">Maths</div><div class="mock-chip">CS</div></div>
+          <div class="mock-card"><div class="mock-title">📄 Data Structures Notes.pdf</div><div class="mock-sub">CS · Added 2 days ago · ✓ Used</div></div>
+          <div class="mock-card"><div class="mock-title">🔗 Assignment 3 - Submission</div><div class="mock-sub">Physics · Due in 3 days</div></div>
+          <div class="mock-card"><div class="mock-title">📄 Linear Algebra Lecture 7</div><div class="mock-sub">Maths · Added today</div></div>
+          <div style="margin-top:12px;padding:10px;background:rgba(245,158,11,.08);border-radius:10px;border:1px solid rgba(245,158,11,.2)">
+            <div style="font-size:10px;font-weight:700;color:#F59E0B">📅 Upcoming Deadlines</div>
+            <div style="font-size:10px;color:var(--text3);margin-top:4px">Physics Lab · 2 days · Maths Test · 5 days</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRAVELER -->
+<section class="ws-section" id="traveler">
+  <div class="container ws-layout flip reveal">
+    <div class="ws-info" style="--ws-c:#10B981">
+      <div class="ws-icon">🌐</div>
+      <div class="sec-badge" style="background:linear-gradient(135deg,#10B981,#3B82F6)">Traveler</div>
+      <h2>Plan every trip with <span style="color:#10B981">total clarity.</span></h2>
+      <p>Never lose a hotel link or food spot recommendation again. Organize every destination with stays, food, and places to visit — all in one tap.</p>
+      <div class="ws-feats">
+        <div class="ws-feat">City-based destinations</div>
+        <div class="ws-feat">Stays / Food / Visit tabs</div>
+        <div class="ws-feat">Google Maps integration</div>
+        <div class="ws-feat">Weather forecasts</div>
+        <div class="ws-feat">Folder per destination</div>
+        <div class="ws-feat">Share trip links</div>
+      </div>
+    </div>
+    <div class="ws-phone">
+      <div class="ws-glow" style="background:#10B981;top:0;right:20px"></div>
+      <div class="phone-frame" style="animation-delay:.5s;position:relative;z-index:1">
+        <div class="phone-screen">
+          <div class="phone-bar"><div class="phone-logo"><img src="smallLogo.png"/>Unfog</div><div class="phone-ws-tag" style="color:#10B981;border-color:#10B98144">🌐 Traveler</div></div>
+          <div style="margin-bottom:10px;padding:10px;background:rgba(16,185,129,.08);border-radius:12px;border:1px solid rgba(16,185,129,.2)">
+            <div style="font-size:11px;font-weight:800;color:#10B981">📍 Singapore</div>
+            <div style="font-size:10px;color:var(--text3)">Planned · 12 saves</div>
+          </div>
+          <div class="mock-row"><div class="mock-chip active">All</div><div class="mock-chip">Stays</div><div class="mock-chip">Food</div><div class="mock-chip">Visit</div></div>
+          <div class="mock-card"><div class="mock-title">🏨 Marina Bay Sands</div><div class="mock-sub">Stay · Saved from Booking.com</div></div>
+          <div class="mock-card"><div class="mock-title">🍜 Maxwell Food Centre</div><div class="mock-sub">Food · Must try Chicken Rice</div></div>
+          <div class="mock-card"><div class="mock-title">🌳 Gardens by the Bay</div><div class="mock-sub">Visit · Free entry before 6pm</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPORTS -->
+<section class="ws-section" id="sports">
+  <div class="container ws-layout reveal">
+    <div class="ws-info" style="--ws-c:#D97706">
+      <div class="ws-icon">🏃</div>
+      <div class="sec-badge" style="background:linear-gradient(135deg,#D97706,#EF4444)">Sports</div>
+      <h2>Track your <span style="color:#D97706">athletic life.</span></h2>
+      <p>Your gym routine, exercise folders, nutrition saves and match days — all organized. Stop scrolling YouTube for that exercise video you saved 3 months ago.</p>
+      <div class="ws-feats">
+        <div class="ws-feat">Gym routine builder</div>
+        <div class="ws-feat">Exercise folders</div>
+        <div class="ws-feat">Match day calendar</div>
+        <div class="ws-feat">Nutrition saves</div>
+        <div class="ws-feat">YouTube video tracking</div>
+        <div class="ws-feat">Progress notes</div>
+      </div>
+    </div>
+    <div class="ws-phone">
+      <div class="ws-glow" style="background:#D97706;top:0;left:20px"></div>
+      <div class="phone-frame" style="animation-delay:1s;position:relative;z-index:1">
+        <div class="phone-screen">
+          <div class="phone-bar"><div class="phone-logo"><img src="smallLogo.png"/>Unfog</div><div class="phone-ws-tag" style="color:#D97706;border-color:#D9770644">🏃 Sports</div></div>
+          <div class="mock-row"><div class="mock-chip active">Routine</div><div class="mock-chip">Exercises</div><div class="mock-chip">Match Days</div></div>
+          <div class="mock-card"><div class="mock-title">💪 Monday — Push Day</div><div class="mock-sub">Chest · Shoulders · Triceps · 6 exercises</div></div>
+          <div class="mock-card"><div class="mock-title">🦵 Wednesday — Leg Day</div><div class="mock-sub">Quads · Hamstrings · Calves</div></div>
+          <div style="margin-top:8px;padding:10px;background:rgba(217,119,6,.08);border-radius:10px;border:1px solid rgba(217,119,6,.2)">
+            <div style="font-size:10px;font-weight:700;color:#D97706">📅 Next Match · Saturday</div>
+            <div style="font-size:10px;color:var(--text3);margin-top:2px">vs Team B · 5:00 PM · Home Ground</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DESIGNER -->
+<section class="ws-section" id="designer">
+  <div class="container ws-layout flip reveal">
+    <div class="ws-info" style="--ws-c:#7C3AED">
+      <div class="ws-icon">🎨</div>
+      <div class="sec-badge" style="background:linear-gradient(135deg,#7C3AED,#EC4899)">Designer</div>
+      <h2>Your personal <span style="color:#7C3AED">design board.</span></h2>
+      <p>A curated space for UI inspiration, color palettes, font collections, and design references. No more "I saved that somewhere" moments.</p>
+      <div class="ws-feats">
+        <div class="ws-feat">Design inspiration board</div>
+        <div class="ws-feat">Font collections</div>
+        <div class="ws-feat">Color palette saves</div>
+        <div class="ws-feat">UI reference screenshots</div>
+        <div class="ws-feat">Story & post designs</div>
+        <div class="ws-feat">Dribbble & Behance links</div>
+      </div>
+    </div>
+    <div class="ws-phone">
+      <div class="ws-glow" style="background:#7C3AED;top:0;right:20px"></div>
+      <div class="phone-frame" style="animation-delay:1.5s;position:relative;z-index:1">
+        <div class="phone-screen">
+          <div class="phone-bar"><div class="phone-logo"><img src="smallLogo.png"/>Unfog</div><div class="phone-ws-tag" style="color:#7C3AED;border-color:#7C3AED44">🎨 Designer</div></div>
+          <div class="mock-row"><div class="mock-chip active">Inspiration</div><div class="mock-chip">Fonts</div><div class="mock-chip">Colors</div></div>
+          <div class="mock-card"><div class="mock-title">🎨 Glassmorphism UI Kit</div><div class="mock-sub">Dribbble · Saved for mobile redesign</div></div>
+          <div class="mock-card"><div class="mock-title">🔤 Plus Jakarta Sans — Free font</div><div class="mock-sub">Google Fonts · Modern geometric</div></div>
+          <div style="display:flex;gap:6px;margin-top:8px">
+            <div style="flex:1;height:32px;border-radius:8px;background:#4F7CF7"></div>
+            <div style="flex:1;height:32px;border-radius:8px;background:#4FD1C5"></div>
+            <div style="flex:1;height:32px;border-radius:8px;background:#F59E0B"></div>
+            <div style="flex:1;height:32px;border-radius:8px;background:#7C3AED"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CODER -->
+<section class="ws-section" id="coder">
+  <div class="container ws-layout reveal">
+    <div class="ws-info" style="--ws-c:#059669">
+      <div class="ws-icon">💻</div>
+      <div class="sec-badge" style="background:linear-gradient(135deg,#059669,#3B82F6)">Coder</div>
+      <h2>Your developer <span style="color:#059669">knowledge base.</span></h2>
+      <p>Repos, docs, tutorials, YouTube playlists and architecture notes — all indexed. Track your YouTube learning progress video by video.</p>
+      <div class="ws-feats">
+        <div class="ws-feat">YouTube playlist tracker</div>
+        <div class="ws-feat">Frontend / Backend / AI tabs</div>
+        <div class="ws-feat">GitHub repo saves</div>
+        <div class="ws-feat">Important websites</div>
+        <div class="ws-feat">Snippet references</div>
+        <div class="ws-feat">Doc & article saves</div>
+      </div>
+    </div>
+    <div class="ws-phone">
+      <div class="ws-glow" style="background:#059669;top:0;left:20px"></div>
+      <div class="phone-frame" style="animation-delay:2s;position:relative;z-index:1">
+        <div class="phone-screen">
+          <div class="phone-bar"><div class="phone-logo"><img src="smallLogo.png"/>Unfog</div><div class="phone-ws-tag" style="color:#059669;border-color:#05966944">💻 Coder</div></div>
+          <div class="mock-row"><div class="mock-chip active">All</div><div class="mock-chip">Frontend</div><div class="mock-chip">Backend</div><div class="mock-chip">AI</div></div>
+          <div class="mock-card"><div class="mock-title">▶️ React Native Full Course</div><div class="mock-sub">YouTube · 24/40 videos complete · 60%</div></div>
+          <div class="mock-card"><div class="mock-title">🐙 awesome-react-native</div><div class="mock-sub">GitHub · 45k stars</div></div>
+          <div class="mock-card"><div class="mock-title">📄 Firestore Best Practices</div><div class="mock-sub">Firebase Docs · Architecture</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GENERAL -->
+<section class="ws-section" id="general">
+  <div class="container ws-layout flip reveal">
+    <div class="ws-info" style="--ws-c:#4F7CF7">
+      <div class="ws-icon">🗂️</div>
+      <div class="sec-badge" style="background:linear-gradient(135deg,#4F7CF7,#4FD1C5)">General</div>
+      <h2>Your quick <span style="color:#4F7CF7">capture inbox.</span></h2>
+      <p>For everything else. Quick notes, random links, ideas that don't fit anywhere — saved and searchable forever. Your digital "just in case" drawer.</p>
+      <div class="ws-feats">
+        <div class="ws-feat">Quick capture</div>
+        <div class="ws-feat">Checklist builder</div>
+        <div class="ws-feat">Any link, any file</div>
+        <div class="ws-feat">Global search ready</div>
+        <div class="ws-feat">Important websites</div>
+        <div class="ws-feat">AI tagging</div>
+      </div>
+    </div>
+    <div class="ws-phone">
+      <div class="ws-glow" style="background:#4F7CF7;top:0;right:20px"></div>
+      <div class="phone-frame" style="animation-delay:2.5s;position:relative;z-index:1">
+        <div class="phone-screen">
+          <div class="phone-bar"><div class="phone-logo"><img src="smallLogo.png"/>Unfog</div><div class="phone-ws-tag" style="color:#4F7CF7;border-color:#4F7CF744">🗂️ General</div></div>
+          <div class="mock-row"><div class="mock-chip active">All</div><div class="mock-chip">Links</div><div class="mock-chip">Files</div></div>
+          <div class="mock-card"><div class="mock-title">🔗 Interesting article on productivity</div><div class="mock-sub">Medium · Saved · 5 min read</div></div>
+          <div class="mock-card"><div class="mock-title">✅ Weekend Checklist</div><div class="mock-sub">3/5 done · Updated today</div></div>
+          <div class="mock-card"><div class="mock-title">🔗 Best restaurants in Pune 2026</div><div class="mock-sub">Instagram · Saved from story</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="foot-top">
+      <div class="foot-brand"><img src="smallLogo.png"/><span>Unfog</span><p>No Confusion.</p></div>
+      <div class="foot-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#features">Features</a>
+        <a href="index.html#download">Download</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+    </div>
+    <div class="foot-bottom"><p>© 2026 Unfog. Built with ❤️ by Mohit &amp; Shantanu.</p><span class="ver-badge">v1.0.1</span></div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+<script>
+document.querySelectorAll('.reveal').forEach((el,i)=>{
+  el.style.transitionDelay=i*0.1+'s';
+  new IntersectionObserver(([e])=>{if(e.isIntersecting){e.target.classList.add('in')}},{threshold:0.1}).observe(el);
+});
+</script>
+</body>
+</html>
